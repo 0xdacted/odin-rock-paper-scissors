@@ -1,3 +1,6 @@
+let playerWins = 0;
+let computerWins = 0;
+
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max) ) + min;
 }
@@ -38,26 +41,45 @@ function playerPlay() {
 }
 
 function playRound() {
-
+   
     let playerSelection = playerPlay();
     let computerSelection = computerPlay();
 
-    if (playerSelection === "rock" && computerSelection === "rock" || playerSelection === "paper" && computerSelection === "paper" || playerSelection === "scissors" && computerSelection === "scissors")   
-    {
+    if (playerSelection === computerSelection) {
+
         return "you have tied! " + playerSelection + " ties to " + computerSelection;
     }
+
     else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "rock") 
     {
-        return "you have won! " + playerSelection + " beats " + computerSelection;
-    }
-    else if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "scissors" && computerSelection === "rock" || playerSelection === "paper" && computerSelection.textContent === "scissors") 
-    {
-        return "you have lost! " + playerSelection + " loses to " + computerSelection;
+        ++playerWins;
+        return "you have won! " + playerSelection + " beats " + computerSelection + ". You have won " + playerWins + " time(s)";
+       
     }
 
     else {
-    return "error";
+        ++computerWins;
+        return "you have lost! " + playerSelection + " loses to " + computerSelection + ". You have lost " + computerWins + " time(s)";
+        
+    }
 }
 
+function game() {
+    
+    for (let i = 0; i < 5; i++) {
+        let round = playRound();
+        console.log(round);
+       }
+    
+    if (playerWins > computerWins) {
+        return "You have beat the computer!";
+    }
 
+    else if (playerWins < computerWins) {
+        return "You have lost to the computer!";
+    }
+    
+    else if (playerWins === computerWins) {
+        return "You have tied the computer!";
+    }
 }
