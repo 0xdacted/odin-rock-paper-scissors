@@ -35,7 +35,29 @@ function playerPlay() {
         default:
             return "Please type rock, paper, or scissors"
     }
-  
+}
+
+function playRound() {
+
+    let playerSelection = playerPlay();
+    let computerSelection = computerPlay();
+
+    if (playerSelection === "rock" && computerSelection === "rock" || playerSelection === "paper" && computerSelection === "paper" || playerSelection === "scissors" && computerSelection === "scissors")   
+    {
+        return "you have tied";
+    }
+    else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "rock") 
+    {
+        return "you have won!";
+    }
+    else if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "scissors" && computerSelection === "rock" || playerSelection === "paper" && computerSelection.textContent === "scissors") 
+    {
+        return "you have lost";
+    }
+
+    else {
+    return "error";
+}
+
 
 }
-   
