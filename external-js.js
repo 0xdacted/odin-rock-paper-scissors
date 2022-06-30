@@ -1,6 +1,3 @@
-let playerWins = 0;
-let computerWins = 0;
-
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max) ) + min;
 }
@@ -20,66 +17,76 @@ function computerPlay() {
    }
 }
 
-function playerPlay() {
-    let playerSelection = prompt("Please type rock, paper, or scissors").toLowerCase();
-    switch(playerSelection) {
-        case playerSelection.textContent = "rock":
-            return "rock"
-            break;
-        
-        case playerSelection.textContent = "paper":
-            return "paper"
-            break;
-        
-        case playerSelection.textContent = "scissors":
-            return "scissors"
-            break;
-
-        default:
-            return "Please type rock, paper, or scissors"
-    }
-}
-
 function playRound() {
-   
-    let playerSelection = playerPlay();
-    let computerSelection = computerPlay();
+    let computerChoice = computerPlay();
+    let userChoice = userSelection();
+    
+    if (computerChoice === userChoice) {
 
-    if (playerSelection === computerSelection) {
-
-        return "you have tied! " + playerSelection + " ties to " + computerSelection;
+        console.log("you have tied! " + userChoice + " ties to " + computerChoice);
     }
 
-    else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "rock") 
+    else if (computerChoice === "scissors" && userChoice === "rock" || computerChoice === "rock" && userChoice === "paper" 
+    || computerChoice === "paper" && userChoice === "scissors")
     {
-        ++playerWins;
-        return "you have won! " + playerSelection + " beats " + computerSelection + ". You have won " + playerWins + " time(s)";
+        console.log("you have won! " + userChoice + " beats " + computerChoice);
        
     }
 
     else {
-        ++computerWins;
-        return "you have lost! " + playerSelection + " loses to " + computerSelection + ". You have lost " + computerWins + " time(s)";
+        console.log("you have lost! " + userChoice + " loses to " + computerChoice);
         
     }
 }
 
-function game() {
-    
-    for (let i = 0; i < 5; i++) {
-        let round = playRound();
-        console.log(round);
-       }
-    
-    if (playerWins > computerWins) {
-        return "You have beat the computer!";
-    }
-
-    else if (playerWins < computerWins) {
-        return "You have lost to the computer!";
-    }
-    
-    else if (playerWins === computerWins) {
-        return "You have tied the computer!";
-    }
+function userSelection () {
+if (selectRock) {
+    return "rock"
 }
+
+else if (selectPaper) {
+    return "paper"
+}
+else {
+    return "scissors"
+}
+
+}
+
+const selectRock = document.querySelector("#rock-btn");
+selectRock.addEventListener('click', playRound);
+
+const selectPaper = document.querySelector("#paper-btn");
+selectPaper.addEventListener('click', playRound);
+
+
+const selectScissors = document.querySelector("#scissors-btn");
+selectScissors.addEventListener('click', playRound);
+
+
+
+
+
+
+
+
+
+//function game() {
+    
+//   for (let i = 0; i < 5; i++) {
+//        let round = playRound();
+  //      console.log(round);
+    //   }
+    
+ //   if (playerWins > computerWins) {
+//        return "You have beat the computer!";
+//    }
+
+//    else if (playerWins < computerWins) {
+//        return "You have lost to the computer!";
+//    }
+    
+//    else if (playerWins === computerWins) {
+//        return "You have tied the computer!";
+ //   }
+//}
