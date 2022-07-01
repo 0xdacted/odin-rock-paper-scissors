@@ -27,7 +27,6 @@ const BUTTONS = [
 ]
 
 
-
 buttons.forEach(button => { button.addEventListener('click', e => {
     const select = button.dataset.selection
    const userSelection =  BUTTONS.find(button => button === select)
@@ -35,6 +34,13 @@ buttons.forEach(button => { button.addEventListener('click', e => {
     isWinner(userSelection, computerSelection)
 })
 })
+
+
+const results = document.querySelector('.results');
+const youWin = document.querySelector('.youWin');
+const computerWin = document.querySelector('.computerWin');
+
+
 
 function isWinner(userSelection, computerSelection) {
     
@@ -55,41 +61,26 @@ function isWinner(userSelection, computerSelection) {
         results.textContent = "you have lost! " + userSelection + " loses to " + computerSelection;
         
     }
-    computerWin.textContent = "The computer has won " + computerWins + " times";
-    youWin.textContent = "You have won " + userWins + " times";
-
+    score();
    }
 
-const results = document.querySelector('.results');
-const youWin = document.querySelector('.youWin');
-const computerWin = document.querySelector('.computerWin');
-body.appendChild(youWin);
-body.appendChild(computerWin);
+   function score() {
+    if (computerWins === 5) {
+        results.textContent = "The computer has won 5 rounds, the computer wins!"
+        computerWin.textContent = "The computer has won " + computerWins + " times";
+
+    }
+    else if (userWins === 5) {
+        results.textContent = "You have won 5 rounds, you win!"
+        youWin.textContent = "You have won " + userWins + " times";
+
+    }
+    else {
+    computerWin.textContent = "The computer has won " + computerWins + " times";
+    youWin.textContent = "You have won " + userWins + " times";
+    }
+   }
 
 
 
 
-
-
-
-
-
-//function game() {
-    
-//   for (let i = 0; i < 5; i++) {
-//        let round = playRound();
-  //      console.log(round);
-    //   }
-    
- //   if (playerWins > computerWins) {
-//        return "You have beat the computer!";
-//    }
-
-//    else if (playerWins < computerWins) {
-//        return "You have lost to the computer!";
-//    }
-    
-//    else if (playerWins === computerWins) {
-//        return "You have tied the computer!";
- //   }
-//}
