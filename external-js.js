@@ -1,10 +1,13 @@
+let userWins = 0;
+let computerWins = 0;
+
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max) ) + min;
 }
 
 function computerPlay() {
-   let computerSelection = getRndInteger(1,3); 
-   switch(computerSelection) {
+   let computerChoice = getRndInteger(1,3); 
+   switch(computerChoice) {
     case 1:
         return "rock"
         break;
@@ -17,51 +20,44 @@ function computerPlay() {
    }
 }
 
-function playRound() {
-    let computerChoice = computerPlay();
-    let userChoice = userSelection();
-    
-    if (computerChoice === userChoice) {
+var buttons = document.querySelectorAll("[data-selection]");
 
-        console.log("you have tied! " + userChoice + " ties to " + computerChoice);
+const BUTTONS = [
+"rock", "paper", "scissors"
+]
+
+
+
+buttons.forEach(button => { button.addEventListener('click', e => {
+    const select = button.dataset.selection
+   const userSelection =  BUTTONS.find(button => button === select)
+    let computerSelection = computerPlay()
+    isWinner(userSelection, computerSelection)
+})
+})
+
+function isWinner(userSelection, computerSelection) {
+    
+    if (userSelection === computerSelection) {
+
+        console.log("you have tied! " + userSelection + " ties to " + computerSelection);
     }
 
-    else if (computerChoice === "scissors" && userChoice === "rock" || computerChoice === "rock" && userChoice === "paper" 
-    || computerChoice === "paper" && userChoice === "scissors")
+    else if (userSelection === "rock" && computerSelection === "scissors" || userSelection === "scissors" && computerSelection === "paper" || userSelection === "paper" && computerSelection === "rock") 
     {
-        console.log("you have won! " + userChoice + " beats " + computerChoice);
+        ++userWins;
+        console.log("you have won! " + userSelection + " beats " + computerSelection + ". You have won " + userWins + " time(s)");
        
     }
 
     else {
-        console.log("you have lost! " + userChoice + " loses to " + computerChoice);
+        ++computerWins;
+        console.log("you have lost! " + userSelection + " loses to " + computerSelection + ". You have lost " + computerWins + " time(s)");
         
     }
-}
-
-function userSelection () {
-if (selectRock) {
-    return "rock"
-}
-
-else if (selectPaper) {
-    return "paper"
-}
-else {
-    return "scissors"
-}
-
-}
-
-const selectRock = document.querySelector("#rock-btn");
-selectRock.addEventListener('click', playRound);
-
-const selectPaper = document.querySelector("#paper-btn");
-selectPaper.addEventListener('click', playRound);
+   }
 
 
-const selectScissors = document.querySelector("#scissors-btn");
-selectScissors.addEventListener('click', playRound);
 
 
 
