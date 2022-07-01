@@ -40,24 +40,31 @@ function isWinner(userSelection, computerSelection) {
     
     if (userSelection === computerSelection) {
 
-        console.log("you have tied! " + userSelection + " ties to " + computerSelection);
+        results.textContent = "you have tied! " + userSelection + " ties to " + computerSelection;
     }
 
     else if (userSelection === "rock" && computerSelection === "scissors" || userSelection === "scissors" && computerSelection === "paper" || userSelection === "paper" && computerSelection === "rock") 
     {
         ++userWins;
-        console.log("you have won! " + userSelection + " beats " + computerSelection + ". You have won " + userWins + " time(s)");
+       results.textContent = "you have won! " + userSelection + " beats " + computerSelection;
        
     }
 
     else {
         ++computerWins;
-        console.log("you have lost! " + userSelection + " loses to " + computerSelection + ". You have lost " + computerWins + " time(s)");
+        results.textContent = "you have lost! " + userSelection + " loses to " + computerSelection;
         
     }
+    computerWin.textContent = "The computer has won " + computerWins + " times";
+    youWin.textContent = "You have won " + userWins + " times";
+
    }
 
-
+const results = document.querySelector('.results');
+const youWin = document.querySelector('.youWin');
+const computerWin = document.querySelector('.computerWin');
+body.appendChild(youWin);
+body.appendChild(computerWin);
 
 
 
