@@ -65,12 +65,12 @@ function isWinner(userSelection, computerSelection) {
    }
 
    function score() {
-    if (computerWins === 5) {
+    if (computerWins === 5 && userWins < 5) {
         results.textContent = "The computer has won 5 rounds, the computer wins!"
         computerWin.textContent = "The computer has won " + computerWins + " times";
 
     }
-    else if (userWins === 5) {
+    else if (userWins === 5 && computerWins < 5) {
         results.textContent = "You have won 5 rounds, you win!"
         youWin.textContent = "You have won " + userWins + " times";
 
